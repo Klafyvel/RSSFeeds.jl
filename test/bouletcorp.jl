@@ -16,5 +16,3 @@ using Test
     @test channel.copyright == "2023"
     @test channel.category == [RSSFeeds.RSSCategory(nothing, "Comics"), RSSFeeds.RSSCategory(nothing, "Comics")]
 end
-
-

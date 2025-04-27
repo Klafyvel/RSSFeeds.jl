@@ -24,4 +24,3 @@ using XML
     @test item.enclosure.length == 0
     @test item.enclosure.type == "image/jpg"
 end
-

@@ -21,7 +21,7 @@ function parseextension(c)
     if isnothing(tag)
         throw(RSSFormatError("Cannot parse extension from empty tag."))
     elseif occursin(":", tag)
-        prefix,tag = split(tag, ":")
+        prefix, tag = split(tag, ":")
         return prefix, tag, c
     else
         throw(RSSFormatError("Unhandled tag $c."))
@@ -35,7 +35,7 @@ function parserss(::Type{RSS}, node::XML.AbstractXMLNode)
         end
         return parserss(RSS, XML.children(node)[end])
     end
-    if XML.nodetype(node)!=XML.Element
+    if XML.nodetype(node) != XML.Element
         throw(RSSFormatError("Unexpected XML node type: $(XML.nodetype(node))"))
     end
     if XML.tag(node) != "rss"
@@ -50,7 +50,7 @@ function parserss(::Type{RSS}, node::XML.AbstractXMLNode)
         if k == "version"
             versionumber = VersionNumber(XML.attributes(node)["version"])
         elseif occursin(":", k)
-            type,prefix = split(k, ":")
+            type, prefix = split(k, ":")
             if type == "xmlns"
                 extensions[prefix] = Dict{String, XML.Node}()
             else
@@ -106,10 +106,12 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
     textInput = nothing
     skipHours = Int[]
     skipDays = Int[]
-    extensions = Dict([
-        e => Dict{String, XML.Node}()
-        for e in extensions
-    ])
+    extensions = Dict(
+        [
+            e => Dict{String, XML.Node}()
+                for e in extensions
+        ]
+    )
     for c in XML.children(node)
         tag = XML.tag(c)
         if isnothing(tag)
@@ -134,35 +136,39 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
             if isnothing(hours)
                 continue
             end
-            append!(skipHours, map(hours) do d 
-                parserss(Int, d)
-            end)
+            append!(
+                skipHours, map(hours) do d
+                    parserss(Int, d)
+                end
+            )
         elseif tag == "skipDays"
             days = XML.children(c)
             if isnothing(days)
                 continue
             end
-            append!(skipDays, map(days) do d 
-                day = lowercase(parserss(String, d))
-                if day == "monday"
-                    Dates.Monday
-                elseif day == "tuesday"
-                    Dates.Tuesday
-                elseif day == "wednesday"
-                    Dates.Wednesday
-                elseif day == "thursday"
-                    Dates.Thursday
-                elseif day == "friday"
-                    Dates.Friday
-                elseif day == "saturday"
-                    Dates.Saturday
-                elseif day == "sunday"
-                    Dates.Sunday
-                else
-                    throw(RSSFormatError("Unhandled skip day: $d"))
-                end
+            append!(
+                skipDays, map(days) do d
+                    day = lowercase(parserss(String, d))
+                    if day == "monday"
+                        Dates.Monday
+                    elseif day == "tuesday"
+                        Dates.Tuesday
+                    elseif day == "wednesday"
+                        Dates.Wednesday
+                    elseif day == "thursday"
+                        Dates.Thursday
+                    elseif day == "friday"
+                        Dates.Friday
+                    elseif day == "saturday"
+                        Dates.Saturday
+                    elseif day == "sunday"
+                        Dates.Sunday
+                    else
+                        throw(RSSFormatError("Unhandled skip day: $d"))
+                    end
 
-            end)
+                end
+            )
         elseif tag == "item"
             push!(items, parserss(RSSItem, c, extensions))
         elseif occursin(":", tag)
@@ -182,12 +188,12 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
         throw(RSSFormatError("Channel does not define a description."))
     end
     return RSSChannel(;
-        string_variables..., items, pubDate, lastBuildDate, category, 
+        string_variables..., items, pubDate, lastBuildDate, category,
         cloud, ttl, image, textInput, skipHours, skipDays, extensions
     )
 end
 
-function parserss(::Type{String}, node::XML.AbstractXMLNode; throwempty=true)
+function parserss(::Type{String}, node::XML.AbstractXMLNode; throwempty = true)
     if !XML.is_simple(node)
         if throwempty
             throw(RSSFormatError("Node $(XML.tag(node)) is expected to contain a text child element. Got $(XML.write(node))."))
@@ -275,20 +281,22 @@ function parserss(::Type{RSSTextInput}, node::XML.AbstractXMLNode)
 end
 
 function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions)
-    title= nothing
-    link= nothing
-    description= nothing
-    author= nothing
-    category= RSSCategory[]
-    comments= nothing
-    enclosure= nothing
-    guid= nothing
-    pubDate= nothing
+    title = nothing
+    link = nothing
+    description = nothing
+    author = nothing
+    category = RSSCategory[]
+    comments = nothing
+    enclosure = nothing
+    guid = nothing
+    pubDate = nothing
     source = nothing
-    extensions = Dict([
-        e => Dict{String, XML.Node}()
-        for e in extensions
-    ])
+    extensions = Dict(
+        [
+            e => Dict{String, XML.Node}()
+                for e in extensions
+        ]
+    )
     tags = XML.children(node)
     if !isnothing(tags)
         for c in tags
@@ -325,7 +333,7 @@ function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions)
         end
     end
     return RSSItem(
-        title, link, description, author, category, comments, enclosure, guid, 
+        title, link, description, author, category, comments, enclosure, guid,
         pubDate, source, extensions
     )
 end
@@ -337,7 +345,7 @@ function parserss(::Type{RSSEnclosure}, node::XML.AbstractXMLNode)
     if isnothing(XML.attributes(node))
         throw(RSSFormatError("<enclosure> node must have three attributes: `url`, `length`, `type`."))
     end
-    for (attr,val) in XML.attributes(node)
+    for (attr, val) in XML.attributes(node)
         if attr == "url"
             url = val
         elseif attr == "length"
@@ -352,7 +360,7 @@ end
 function parserss(::Type{RSSGUID}, node::XML.AbstractXMLNode)
     attributes = XML.attributes(node)
     ispermalink = if isnothing(attributes)
-        true 
+        true
     else
         get(attributes, "isPermaLink", "true") == "true"
     end

@@ -10,4 +10,3 @@ using RSSFeeds
         @test item.description isa String
     end
 end
-

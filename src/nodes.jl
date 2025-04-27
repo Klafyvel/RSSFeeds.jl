@@ -13,7 +13,7 @@ function Base.getproperty(obj::T, sym::Symbol) where {T <: AbstractRSS}
         return getfield(obj, sym)
     end
 end
-function Base.propertynames(obj::T, _::Bool=false) where {T <: AbstractRSS}
+function Base.propertynames(obj::T, _::Bool = false) where {T <: AbstractRSS}
     return [fieldnames(T)..., keys(obj.extensions)...]
 end
 
@@ -21,7 +21,7 @@ end
 A simple wrapper around `Dict{String, String}()` to allow subclasses of 
 [`AbstractRSS`](@ref) access extensions as `obj.ext.tag`.
 """
-struct RSSExension 
+struct RSSExension
     items::Dict{String, XML.Node}
 end
 function Base.getproperty(obj::RSSExension, sym::Symbol)
@@ -32,7 +32,7 @@ function Base.getproperty(obj::RSSExension, sym::Symbol)
         return getfield(obj, sym)
     end
 end
-function Base.propertynames(obj::RSSExension, _::Bool=false)
+function Base.propertynames(obj::RSSExension, _::Bool = false)
     return [fieldnames(RSSExension)..., keys(obj.items)...]
 end
 

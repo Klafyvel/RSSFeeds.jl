@@ -93,15 +93,15 @@ function parse(s::AbstractString)
     else
         throw(RSSFormatError("Unable to parse date containing more than one comma: $s"))
     end
-    
+
     # Step 2: split date, time, and zone
-    space_split = rsplit(work_str, limit=3)
+    space_split = rsplit(work_str, limit = 3)
     date_str = first(space_split)
     if length(space_split) != 3
         throw(RSSFormatError("Unable to parse date: $s. No time specified."))
     end
     date_str, hour_str, zone_str = space_split
-    
+
     # Step 3: handle date
     date_space_split = split(date_str)
     if length(date_space_split) != 3

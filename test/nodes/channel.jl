@@ -62,4 +62,3 @@ end
     @test length(XML.attributes(channel.atom.link)) == 3
     @test XML.attributes(channel.atom.link)["href"] == "http://rss.arxiv.org/rss/cs"
 end
-
