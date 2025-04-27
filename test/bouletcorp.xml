@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>bouletcorp.com</title>
+        <link>https://bouletcorp.com</link>
+        <description>Bouletcorp, le site web de Boulet.</description>
+        <lastBuildDate>Sat, 26 Apr 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/nuxt-community/feed-module</generator>
+        <language>fr</language>
+        <copyright>2023</copyright>
+        <category>Comics</category>
+        <category>Comics</category>
+        <item>
+            <title><![CDATA[All Cops are Blagueurs]]></title>
+            <link>https://bouletcorp.com/rogatons/2025/04/26</link>
+            <guid>292</guid>
+            <pubDate>Sat, 26 Apr 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[All Cops are Blagueurs]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/059_Roux03_b8b1a7519f.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Aquapella]]></title>
+            <link>https://bouletcorp.com/rogatons/2025/03/18</link>
+            <guid>291</guid>
+            <pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aquapella]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/053_Aquapella01_a511eb2d04.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Portier]]></title>
+            <link>https://bouletcorp.com/rogatons/2025/03/07</link>
+            <guid>289</guid>
+            <pubDate>Fri, 07 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Portier]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/049_Porte02_a692ed13a2.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Streaming]]></title>
+            <link>https://bouletcorp.com/rogatons/2025/02/08</link>
+            <guid>288</guid>
+            <pubDate>Sat, 08 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Streaming]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/047_Quobuz04_d87c093ae4.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Ouverture Facile]]></title>
+            <link>https://bouletcorp.com/rogatons/2025/01/25</link>
+            <guid>287</guid>
+            <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Ouverture Facile]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/044_Ouverture_Facile02_f9f04fc052.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Un Royaume Magique]]></title>
+            <link>https://bouletcorp.com/notes/2024/09/24</link>
+            <guid>1890</guid>
+            <pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Un Royaume Magique]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/A01_90efadcde9.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Catch'em all!]]></title>
+            <link>https://bouletcorp.com/notes/2024/07/05</link>
+            <guid>1859</guid>
+            <pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Catch'em all!]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/16_Draculiptere_4e4c5dd8aa.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Visa Blues]]></title>
+            <link>https://bouletcorp.com/notes/2024/05/22</link>
+            <guid>1858</guid>
+            <pubDate>Wed, 22 May 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Visa Blues]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/Visa08_be0c8ccc4d.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Le Joli Coco]]></title>
+            <link>https://bouletcorp.com/notes/2024/03/15</link>
+            <guid>1857</guid>
+            <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Le Joli Coco]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Le Joli Coco contre le Cartel Cubain]]></title>
+            <link>https://bouletcorp.com/notes/2024/01/05</link>
+            <guid>1856</guid>
+            <pubDate>Fri, 05 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Le Joli Coco contre le Cartel Cubain]]></description>
+            <enclosure url="https://bouletcorp.com/uploads/Coco00b_342c71144b.jpg" length="0" type="image/jpg"/>
+        </item>
+    </channel>
+</rss>

@@ -1,14 +1,14 @@
-using RSS
+using RSSFeeds
 using Documenter
 
-DocMeta.setdocmeta!(RSS, :DocTestSetup, :(using RSS); recursive=true)
+DocMeta.setdocmeta!(RSSFeeds, :DocTestSetup, :(using RSSFeeds); recursive=true)
 
 makedocs(;
-    modules=[RSS],
+    modules=[RSSFeeds],
     authors="Hugo Levy-Falk <hugo@klafyvel.me> and contributors",
-    sitename="RSS.jl",
+    sitename="RSSFeeds.jl",
     format=Documenter.HTML(;
-        canonical="https://klafyvel.github.io/RSS.jl",
+        canonical="https://klafyvel.github.io/RSSFeeds.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/klafyvel/RSS.jl",
+    repo="github.com/klafyvel/RSSFeeds.jl",
     devbranch="main",
 )

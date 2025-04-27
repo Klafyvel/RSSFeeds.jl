@@ -1,14 +1,19 @@
-using RSS
+using RSSFeeds
 using Test
 using Aqua
 using JET
 
-@testset "RSS.jl" begin
+@testset "RSSFeeds.jl" begin
     @testset "Code quality (Aqua.jl)" begin
-        Aqua.test_all(RSS)
+        Aqua.test_all(RSSFeeds)
     end
     @testset "Code linting (JET.jl)" begin
-        JET.test_package(RSS; target_defined_modules = true)
+        JET.test_package(RSSFeeds; target_defined_modules = true)
     end
-    # Write your tests here.
+    include("rfc822datetime.jl")
+    include("nodes/channel.jl")
+    include("nodes/item.jl")
+    include("nodes/rss.jl")
+    include("bouletcorp.jl")
+    include("iteration.jl")
 end

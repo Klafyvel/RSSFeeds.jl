@@ -1,10 +1,23 @@
-name = "RSS"
-uuid = "bedffbe7-4aea-4017-859e-ab499a130e43"
+name = "RSSFeeds"
+uuid = "677f0f31-143a-4af5-9e6e-01b523ad3e68"
 authors = ["Hugo Levy-Falk <hugo@klafyvel.me> and contributors"]
 version = "0.0.1"
 
+[deps]
+Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+XML = "72c71f33-b9b6-44de-8c94-c961784809e2"
+
 [compat]
-julia = "1.6"
+Aqua = "0.8"
+Compat = "4.16.0"
+Dates = "1.10.0"
+DocStringExtensions = "0.9.4"
+JET = ">= 0.9"
+Test = "1.10"
+XML = "0.3.5"
+julia = "1.10"
 
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"

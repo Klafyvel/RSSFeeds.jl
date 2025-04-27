@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = RSS
+CurrentModule = RSSFeeds
 ```
 
-# RSS
+# RSSFeeds
 
-Documentation for [RSS](https://github.com/klafyvel/RSS.jl).
+Documentation for [RSSFeeds](https://github.com/klafyvel/RSSFeeds.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [RSS]
+Modules = [RSSFeeds]
 ```
