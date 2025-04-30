@@ -182,6 +182,7 @@ Base.@kwdef struct RSSItem <: AbstractRSS
         return new(title, link, description, author, category, comments, enclosure, guid, pubDate, source, extensions)
     end
 end
+Base.show(io::IO, item::RSSItem) = print(io, "RSSItem(\"$(something(item.title, item.link, item.description))\")")
 
 """
 The channel content of an RSS feed.
@@ -248,6 +249,7 @@ Base.@kwdef struct RSSChannel <: AbstractRSS
     "Stores extension tags."
     extensions::Dict{String, Dict{String, XML.Node}} = Dict()
 end
+Base.show(io::IO, channel::RSSChannel) = print(io, "RSSChannel(\"$(channel.title)\", \"$(channel.link)\")")
 
 """
 Represents an RSS feed.
@@ -264,3 +266,4 @@ struct RSS <: AbstractRSS
     "Stores extension tags."
     extensions::Dict{String, Dict{String, XML.Node}}
 end
+Base.show(io::IO, rss::RSS) = print(io, "RSS($(rss.version), \"$(rss.channel.title)\")")
