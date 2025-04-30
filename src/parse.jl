@@ -193,7 +193,7 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions_mode
     )
 end
 
-parserss(::Type{String}, node::XML.AbstractXMLNode) = XML.value(only(node))
+parserss(::Type{String}, node::XML.AbstractXMLNode) = something(XML.value(only(node)), "")
 
 function parserss(::Type{Int}, node::XML.AbstractXMLNode)
     return parse(Int, parserss(String, node))

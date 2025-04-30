@@ -1,6 +1,7 @@
 using RSSFeeds
 using Dates
 using Test
+using XML
 
 @testset "Integration test on quant-ph arxiv feed." begin
     rss = parse(RSSFeeds.RSS, read(joinpath(@__DIR__, "quant-ph.xml")))
@@ -12,4 +13,5 @@ using Test
     @test channel.docs == "http://www.rssboard.org/rss-specification"
     @test channel.language == "en-us"
     @test length(channel.items) == 81
+    @test XML.attributes(channel.atom.link)["href"] == "http://rss.arxiv.org/rss/quant-ph"
 end

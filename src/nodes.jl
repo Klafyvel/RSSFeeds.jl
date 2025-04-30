@@ -14,7 +14,7 @@ function Base.getproperty(obj::T, sym::Symbol) where {T <: AbstractRSS}
     end
 end
 function Base.propertynames(obj::T, _::Bool = false) where {T <: AbstractRSS}
-    return [fieldnames(T)..., keys(obj.extensions)...]
+    return [fieldnames(T)..., Symbol.(keys(obj.extensions))...]
 end
 
 """
@@ -33,7 +33,7 @@ function Base.getproperty(obj::RSSExension, sym::Symbol)
     end
 end
 function Base.propertynames(obj::RSSExension, _::Bool = false)
-    return [fieldnames(RSSExension)..., keys(obj.items)...]
+    return [fieldnames(RSSExension)..., Symbol.(keys(obj.items))...]
 end
 
 """
