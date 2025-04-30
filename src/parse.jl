@@ -80,7 +80,7 @@ function parserss(::Type{RSS}, node::XML.AbstractXMLNode)
     return RSS(versionumber, channel, extensions)
 end
 
-function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
+function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions_model)
     if XML.tag(node) != "channel"
         throw(RSSFormatError("Unexpected tag: $(XML.tag(node)). Expected `channel`."))
     end
@@ -109,7 +109,7 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
     extensions = Dict(
         [
             e => Dict{String, XML.Node}()
-                for e in extensions
+                for e in extensions_model
         ]
     )
     for c in XML.children(node)
@@ -170,7 +170,7 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
                 end
             )
         elseif tag == "item"
-            push!(items, parserss(RSSItem, c, extensions))
+            push!(items, parserss(RSSItem, c, extensions_model))
         elseif occursin(":", tag)
             prefix, t, s = parseextension(c)
             extensions[prefix][t] = s
@@ -193,21 +193,7 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions)
     )
 end
 
-function parserss(::Type{String}, node::XML.AbstractXMLNode; throwempty = true)
-    if !XML.is_simple(node)
-        if throwempty
-            throw(RSSFormatError("Node $(XML.tag(node)) is expected to contain a text child element. Got $(XML.write(node))."))
-        else
-            return ""
-        end
-    end
-    val = XML.simple_value(node)
-    if isnothing(val)
-        return ""
-    else
-        return val
-    end
-end
+parserss(::Type{String}, node::XML.AbstractXMLNode) = XML.value(only(node))
 
 function parserss(::Type{Int}, node::XML.AbstractXMLNode)
     return parse(Int, parserss(String, node))
@@ -280,7 +266,7 @@ function parserss(::Type{RSSTextInput}, node::XML.AbstractXMLNode)
     return RSSTextInput(title, description, name, link)
 end
 
-function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions)
+function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions_model)
     title = nothing
     link = nothing
     description = nothing
@@ -294,7 +280,7 @@ function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions)
     extensions = Dict(
         [
             e => Dict{String, XML.Node}()
-                for e in extensions
+                for e in extensions_model
         ]
     )
     tags = XML.children(node)

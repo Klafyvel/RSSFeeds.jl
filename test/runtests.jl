@@ -16,4 +16,5 @@ using JET
     include("nodes/rss.jl")
     include("bouletcorp.jl")
     include("iteration.jl")
+    include("quant-ph.jl")
 end
