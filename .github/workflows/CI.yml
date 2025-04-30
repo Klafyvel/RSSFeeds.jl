@@ -73,9 +73,9 @@ jobs:
         shell: julia --project=docs --color=yes {0}
         run: |
           using Documenter: DocMeta, doctest
-          using RSS
-          DocMeta.setdocmeta!(RSS, :DocTestSetup, :(using RSS); recursive=true)
-          doctest(RSS)
+          using RSSFeeds
+          DocMeta.setdocmeta!(RSSFeeds, :DocTestSetup, :(using RSSFeeds); recursive=true)
+          doctest(RSSFeeds)
   runic:
     name: Runic formatting
     runs-on: ubuntu-latest
