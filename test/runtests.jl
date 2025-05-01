@@ -17,4 +17,5 @@ using JET
     include("bouletcorp.jl")
     include("iteration.jl")
     include("quant-ph.jl")
+    include("tablesinterface.jl")
 end

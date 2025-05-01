@@ -63,10 +63,14 @@ function parserss(::Type{RSS}, node::XML.AbstractXMLNode)
     if isnothing(versionumber) && versionumber != v"2.0"
         throw(RSSFormatError("RSS.jl does not handle RSS version $versionumber"))
     end
+    item_extensions = Dict{String, OrderedSet{String}}([
+        k=>Set{String}()
+        for k in keys(extensions)
+    ])
     channel = nothing
     for c in XML.children(node)
         if isnothing(channel) && XML.tag(c) == "channel"
-            channel = parserss(RSSChannel, XML.children(node)[end], keys(extensions))
+            channel = parserss(RSSChannel, XML.children(node)[end], item_extensions)
         elseif XML.tag(c) == "channel"
             throw(RSSFormatError("Multiple <channel> tag."))
         else
@@ -77,7 +81,7 @@ function parserss(::Type{RSS}, node::XML.AbstractXMLNode)
     if isnothing(channel)
         throw(RSSFormatError("No <channel> tag."))
     end
-    return RSS(versionumber, channel, extensions)
+    return RSS(versionumber, channel, extensions, item_extensions)
 end
 
 function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions_model)
@@ -109,7 +113,7 @@ function parserss(::Type{RSSChannel}, node::XML.AbstractXMLNode, extensions_mode
     extensions = Dict(
         [
             e => Dict{String, XML.Node}()
-                for e in extensions_model
+            for e in keys(extensions_model)
         ]
     )
     for c in XML.children(node)
@@ -280,7 +284,7 @@ function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions_model)
     extensions = Dict(
         [
             e => Dict{String, XML.Node}()
-                for e in extensions_model
+            for e in keys(extensions_model)
         ]
     )
     tags = XML.children(node)
@@ -313,6 +317,7 @@ function parserss(::Type{RSSItem}, node::XML.AbstractXMLNode, extensions_model)
             elseif occursin(":", tag)
                 prefix, tag, s = parseextension(c)
                 extensions[prefix][tag] = s
+                push!(extensions_model[prefix], tag)
             else
                 throw(RSSFormatError("Unexpected channel child: $(c)"))
             end

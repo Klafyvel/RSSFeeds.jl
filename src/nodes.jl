@@ -265,5 +265,7 @@ struct RSS <: AbstractRSS
     channel::RSSChannel
     "Stores extension tags."
     extensions::Dict{String, Dict{String, XML.Node}}
+    "Internal caching of extension tags used in RSS item children. It would be better to do this from the schema of the namespace, but this is good enough for now."
+    item_extensions::Dict{String, OrderedSet{String}}
 end
 Base.show(io::IO, rss::RSS) = print(io, "RSS($(rss.version), \"$(rss.channel.title)\")")
