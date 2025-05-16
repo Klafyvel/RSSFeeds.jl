@@ -1,0 +1,13 @@
+data_config_version = 0
+uuid = "6cdfde7c-63e8-43bb-bebe-7e17fc6a7fa0"
+name = "test"
+plugins = []
+
+[[bouletcorp]]
+uuid = "db65c7c5-ac17-4566-a55c-a5e2f7d90e44"
+    [[bouletcorp.storage]]
+    driver = "filesystem"
+    path = "bouletcorp.xml"
+    [[bouletcorp.loader]]
+    driver = "rss"
+    type = "DataFrame"

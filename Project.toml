@@ -12,10 +12,16 @@ OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
 Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
 XML = "72c71f33-b9b6-44de-8c94-c961784809e2"
 
+[extensions]
+DataToolkitExt = "DataToolkitCore"
+
 [compat]
 Aqua = "0.8"
 Compat = "4.16.0"
 DataAPI = "1.16.0"
+DataFrames = "1.7"
+DataToolkitCommon = "0.10"
+DataToolkitCore = "0.10"
 Dates = "1.10.0"
 DocStringExtensions = "0.9.4"
 JET = ">= 0.9"
@@ -27,8 +33,11 @@ julia = "1.10"
 
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+DataToolkitCommon = "9e6fccbf-6142-406a-aa4c-75c1ae647f53"
+DataToolkitCore = "caac3e55-418c-402e-a061-64d454aa8f4f"
 JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Aqua", "JET", "Test"]
+test = ["Aqua", "JET", "Test", "DataFrames", "DataToolkitCore", "DataToolkitCommon"]
